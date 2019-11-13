@@ -32,6 +32,7 @@ trait StudentQuery extends StudentDetails {
   }
 
   case class StudentOrder(items: List[StudentPost])
+
 }
 
 trait StudentDetails extends DBConnection {
