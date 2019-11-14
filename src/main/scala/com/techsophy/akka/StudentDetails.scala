@@ -15,7 +15,6 @@ trait StudentQuery extends StudentDetails {
   }
 
   def update(studentPost: StudentPost) = {
-    print("given  student ........." + studentPost)
     db.run(student.filter(_.email === studentPost.email).update(studentPost))
   }
 

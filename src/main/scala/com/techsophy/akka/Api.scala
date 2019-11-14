@@ -5,9 +5,8 @@ import akka.http.scaladsl.server.Route
 
 import scala.concurrent.ExecutionContext.Implicits.global
 
-trait Api extends Json{
+trait Api extends Json {
   val studentObj: StudentQuery
-
   val routes: Route = {
     path("student" / "create") {
       post {
