@@ -3,9 +3,6 @@ package com.techsophy.akka
 
 import com.techsophy.akka.db.{DBConnection, MySQLDBConnector}
 
-import scala.concurrent.Await
-import scala.concurrent.duration.Duration
-
 trait StudentQuery extends StudentDetails {
 
   import driver.api._
@@ -42,10 +39,6 @@ trait StudentDetails extends DBConnection {
 
   def studentInc = student returning student.map(_.id)
 
-  def create =
-    Await.result(db.run(DBIO.seq(
-      student.schema.create
-    )), Duration.Inf)
 
   class StudentTable(tag: Tag) extends Table[StudentPost](tag, "student_table") {
     def * = (name, cname, location, email, id) <> (StudentPost.tupled, StudentPost.unapply)

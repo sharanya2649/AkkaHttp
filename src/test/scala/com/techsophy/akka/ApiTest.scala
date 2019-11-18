@@ -39,7 +39,7 @@ class ApiTest extends WordSpec with Matchers with ScalatestRouteTest with Mockit
       }
     }
     "update" in {
-      val updateJson = """{"name":"boby","cname":"jntuh","location":"kakinada","email":"bob@gmail.com","id":1}"""
+      val updateJson = """{"name":"boby","cname":"jntu","location":"kakinada","email":"bob@gmail.com","id":1}"""
       when(mockedDetails.update(StudentPost("boby", "jntu", "hyd", "bob@gmail.com", Some(1)))).thenReturn(Future(1))
       Post("/student/update", HttpEntity(ContentTypes.`application/json`, updateJson)) ~> ApiObj.routes ~> check {
         responseAs[String] shouldEqual "updated"
