@@ -1,0 +1,9 @@
+2019-11-26  DEBUG[main] o.j.logging - Logging Provider: org.jboss.logging.Slf4jLoggerProvider
+2019-11-26  DEBUG[main] o.k.a.a.ClientCredentialsProviderUtils - Using provider 'secret' for authentication of client 'vanilla'
+2019-11-26  DEBUG[main] o.k.a.a.ClientCredentialsProviderUtils - Loaded clientCredentialsProvider secret
+2019-11-26  DEBUG[main] o.k.a.a.ClientCredentialsProviderUtils - Loaded clientCredentialsProvider jwt
+2019-11-26  DEBUG[main] o.k.a.a.ClientCredentialsProviderUtils - Loaded clientCredentialsProvider secret
+2019-11-26  DEBUG[main] o.k.a.a.ClientCredentialsProviderUtils - Loaded clientCredentialsProvider jwt
+2019-11-26  DEBUG[main] o.k.a.KeycloakDeployment - resolveBrowserUrls
+2019-11-26  DEBUG[main] o.k.a.KeycloakDeployment - resolveNonBrowserUrls
+2019-11-26  DEBUG[main] o.k.a.KeycloakDeploymentBuilder - Use authServerUrl: http://localhost:8080/auth/, tokenUrl: http://localhost:8080/auth/realms/demo/protocol/openid-connect/token, relativeUrls: NEVER

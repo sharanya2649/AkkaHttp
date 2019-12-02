@@ -8,11 +8,11 @@ import com.techsophy.akka.ApiObj
 import scala.concurrent.ExecutionContext
 
 object ApiLaunch extends App {
-  //StudentQueryObj.create
   implicit val system: ActorSystem = ActorSystem()
   implicit val executor: ExecutionContext = system.dispatcher
   implicit val materializer: ActorMaterializer = ActorMaterializer()
-  val port: Int = 8080
-  val bindingFuture = Http().bindAndHandle(ApiObj.routes, "localhost", port)
 
+  val bindingFuture = Http().bindAndHandle(ApiObj.routes, "localhost", 8085)
+  println(s"Server online at http://localhost:8080/\nPress RETURN to stop...")
 }
+
