@@ -17,7 +17,7 @@ class KeycloakTokenVerifier(kId: String, keycloakDeployment: KeycloakDeployment)
         token,
         keycloakDeployment.getPublicKeyLocator
           .getPublicKey(kId, keycloakDeployment),
-        keycloakDeployment.getRealmInfoUrl
+        keycloakDeployment.getRealmInfoUrl, true, false
       )
     }
   }
