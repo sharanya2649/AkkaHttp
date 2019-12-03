@@ -12,7 +12,7 @@ object ApiLaunch extends App {
   implicit val executor: ExecutionContext = system.dispatcher
   implicit val materializer: ActorMaterializer = ActorMaterializer()
 
-  val bindingFuture = Http().bindAndHandle(ApiObj.routes, "localhost", 8085)
+  val bindingFuture = Http().bindAndHandle(ApiObj.routes, "localhost", 8086)
   println(s"Server online at http://localhost:8080/\nPress RETURN to stop...")
 }
 

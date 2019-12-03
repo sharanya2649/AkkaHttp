@@ -20,19 +20,28 @@ trait Api extends Json {
 
   val studentObj: StudentQuery
   val routes: Route = {
-    path("student" / "create") {
-      authorized { token =>
-        post {
-          entity(as[StudentPost]) {
-            json =>
-              val saved = studentObj.insert(json)
-              onComplete(saved) { done =>
-                complete("inserted")
-              }
-          }
+    path("student" / "user") {
+      get {
+        parameters('name.as[String]) {
+          username =>
+            val userToken = studentObj.checkUser(username)
+            complete(userToken)
         }
       }
     } ~
+      path("student" / "create") {
+        authorized { token =>
+          post {
+            entity(as[StudentPost]) {
+              json =>
+                val saved = studentObj.insert(json)
+                onComplete(saved) { done =>
+                  complete("inserted")
+                }
+            }
+          }
+        }
+      } ~
       path("student" / "getAllStudents") {
         authorized { token =>
           get {

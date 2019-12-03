@@ -37,6 +37,7 @@ class ApiTest extends WordSpec with Matchers with ScalatestRouteTest with Mockit
     println(response.body + "----------")
     val accessToken: String = response.body.right.get("access_token")
     println(accessToken + "......")
+
     "insert" in {
       // tests:
       val requestJson: String = """{"name":"ken","cname":"mit","location":"us","email":"ken@gmail.com"}"""

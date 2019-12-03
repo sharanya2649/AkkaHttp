@@ -1,7 +1,10 @@
 package com.techsophy.akka
 
 
+import com.softwaremill.sttp.{HttpURLConnectionBackend, Id, Response, sttp, _}
 import com.techsophy.akka.db.{DBConnection, MySQLDBConnector}
+import org.json4s.native.JsonMethods.parse
+import org.json4s.{DefaultFormats, JString}
 
 trait StudentQuery extends StudentDetails {
 
@@ -25,6 +28,37 @@ trait StudentQuery extends StudentDetails {
 
   def getByName(name: String) = {
     db.run(student.filter(_.name === name).to[List].result)
+  }
+
+  def checkUser(user: String) = {
+    try {
+      implicit val backend = HttpURLConnectionBackend()
+      implicit val formats = DefaultFormats
+
+      val response: Id[Response[Map[String, String]]] = sttp.post(uri"http://localhost:8080/auth/realms/demo/protocol/openid-connect/token")
+        .headers(Map("Content-Type" -> "application/x-www-form-urlencoded"))
+        .body(
+          "grant_type" -> "password",
+          "username" -> user,
+          "password" -> "admin",
+          "client_id" -> "vanilla"
+        ).mapResponse(re => {
+        parse(re.toString).mapField {
+          case (key, JString(value)) =>
+            val res = (key, JString(value.toString))
+            res
+          case x =>
+            x
+        }.extract[Map[String, String]]
+      })
+        .send()
+      val accessToken: String = response.body.right.get("access_token")
+      accessToken
+    }
+    catch {
+      case ex: Exception =>
+        "Exception ....."
+    }
   }
 
   case class StudentOrder(items: List[StudentPost])
