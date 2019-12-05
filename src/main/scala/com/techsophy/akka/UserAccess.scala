@@ -6,7 +6,7 @@ import org.keycloak.admin.client.{Keycloak, KeycloakBuilder}
 
 
 class UserAccess {
-  def verifyUser(user: String): Boolean = {
+  def verifyUser(userId: String): Boolean = {
 
     val SERVER_URL = "http://localhost:8080/auth"
     val REALM = "demo"
@@ -25,14 +25,17 @@ class UserAccess {
         .build()
 
       val users = keycloak.realm("demo").users()
-      val id: UserResource = users.get(user)
+      println("mmm")
+      val id: UserResource = users.get(userId)
+      println("kkk")
+      val username = id.toRepresentation.getUsername
+      println("nnn")
+      //      if (username.equals(user)) {
+      //        true
+      //      } else {
+      //        false
+      //      }
       true
-//      val username = id.toRepresentation.getUsername
-//      if (username.equals(user)) {
-//        true
-//      } else {
-//        false
-//      }
     }
     catch {
       case ex: Exception =>
