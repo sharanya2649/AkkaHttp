@@ -15,4 +15,3 @@ object ApiLaunch extends App {
   val bindingFuture = Http().bindAndHandle(ApiObj.routes, "localhost", 8086)
   println(s"Server online at http://localhost:8080/\nPress RETURN to stop...")
 }
-

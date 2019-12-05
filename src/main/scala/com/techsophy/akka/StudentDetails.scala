@@ -52,7 +52,6 @@ trait StudentQuery extends StudentDetails {
         }.extract[Map[String, String]]
       })
         .send()
-      println(response+ "responseee")
       val accessToken: String = response.body.right.get("access_token")
       accessToken
     }

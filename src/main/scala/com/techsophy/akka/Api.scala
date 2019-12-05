@@ -11,8 +11,8 @@ import scala.concurrent.Future
 trait Api extends Json {
   val oauth2 = new OAuth2Authorization(
     new KeycloakTokenVerifier(
-      "f7efde60-77f7-4f8e-83ee-7088ca7d4085",
-      KeycloakDeploymentBuilder.build(getClass.getResourceAsStream("/keycloak.json"))
+      "fd83f0b2-2cba-4c30-a930-9ac043001c49",
+      KeycloakDeploymentBuilder.build(getClass.getResourceAsStream("/keycloak.json")),
     )
   )
 
@@ -31,6 +31,7 @@ trait Api extends Json {
     } ~
       path("student" / "create") {
         authorized { token =>
+
           post {
             entity(as[StudentPost]) {
               json =>
