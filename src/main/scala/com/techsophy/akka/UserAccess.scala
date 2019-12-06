@@ -25,16 +25,8 @@ class UserAccess {
         .build()
 
       val users = keycloak.realm("demo").users()
-      println("mmm")
       val id: UserResource = users.get(userId)
-      println("kkk")
       val username = id.toRepresentation.getUsername
-      println("nnn")
-      //      if (username.equals(user)) {
-      //        true
-      //      } else {
-      //        false
-      //      }
       true
     }
     catch {
